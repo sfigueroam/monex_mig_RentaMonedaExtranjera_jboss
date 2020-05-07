@@ -3,32 +3,30 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cl.gob.tgr.monex</groupId>
-	<artifactId>RentaMEJB</artifactId>
+	<artifactId>PkgCutServicesMonexEJB</artifactId>
 	<version>1.0.0</version>
 	<packaging>ejb</packaging>
 	
 	<repositories>
 		<repository>
 			<id>maven-group</id>
-			<url>http://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-releases</url>
+			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-group/</url>
 		</repository>
 	</repositories>
-  
-  	<distributionManagement>
+
+	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>hhttp://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-snapshots</url>
+			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>nexus-releases</id>
-			<url>http://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-releases</url>
+			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
-
-
 	<build>
-	<finalName>RentaMEJB</finalName>
+		<finalName>PkgCutServicesMonexEJB</finalName>
 		<sourceDirectory>ejbModule</sourceDirectory>
 		<resources>
 			<resource>
@@ -59,51 +57,27 @@
 	<dependencies>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>javaee-api-7.0</artifactId>
-			<version>1.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
 			<artifactId>log4j-1.2.17</artifactId>
 			<version>1.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>xmlbeans-3.0.0</artifactId>
+			<artifactId>ojdbc6</artifactId>
 			<version>1.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>RentaSchema</artifactId>
+			<artifactId>com.sun.rowset</artifactId>
 			<version>1.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>RMEUtils</artifactId>
+			<artifactId>javaee-api-7.0</artifactId>
 			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>AdfprocedureEJB</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>MessagesVO</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>PkgSiiRentaMeEJB</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>PkgCutServicesMonexEJB</artifactId>
-			<version>1.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
