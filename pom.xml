@@ -20,6 +20,7 @@
 		<module>RentaSchema</module>				<!-- Modulo JAR -->	
 		<module>AdfprocedureEJB</module>			<!-- Modulo JAR, EJB-->
 		<module>PkgSiiRentaMeEJB</module>			<!-- Modulo JAR, EJB -->	
+		<module>PkgCutServicesMonexEJB</module>		<!-- Modulo JAR, EJB -->	
 		<module>RentaMEJB</module>					<!-- Modulo JAR, EJB -->	
 		<module>RentaMasivaWS</module>				<!-- Modulo WAR, Soap Exposer -->	
 		<module>RentaMonedaExtranjera</module>		<!-- Modulo EAR, Applicacion principal -->	

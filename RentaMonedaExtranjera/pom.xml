@@ -45,7 +45,13 @@
 								<groupId>cl.tesoreria.finanzas</groupId>
 								<artifactId>RentaMEJB</artifactId>
 								<bundleFileName>RentaMEJB.jar</bundleFileName>
-							</ejbModule>					
+							</ejbModule>
+							<ejbModule>
+								<groupId>cl.tesoreria.reca.pkgcutservicesmonex</groupId>
+								<artifactId>PkgCutServicesMonexEJB</artifactId>
+								<bundleFileName>PkgCutServicesMonexEJB.jar</bundleFileName>						
+							</ejbModule>
+	
 						</modules>
 						<displayName>RentaMonedaExtranjera</displayName>
 						<generateApplicationXml>true</generateApplicationXml>
@@ -88,6 +94,12 @@
 			<version>1.0.0</version>
 			<type>ejb</type>
 		</dependency>				
+		<dependency>
+			<groupId>cl.tesoreria.reca.pkgcutservicesmonex</groupId>
+			<artifactId>PkgCutServicesMonexEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>		
+		</dependency>
 		<dependency>
 			<groupId>rentamasivame.webservice</groupId>
 			<artifactId>RentaMasivaWS</artifactId>

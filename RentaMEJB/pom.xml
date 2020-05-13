@@ -91,11 +91,12 @@
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
+			<groupId>cl.tesoreria.reca.pkgcutservicesmonex</groupId>
 			<artifactId>PkgCutServicesMonexEJB</artifactId>
 			<version>1.0.0</version>
+			<type>ejb</type>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
