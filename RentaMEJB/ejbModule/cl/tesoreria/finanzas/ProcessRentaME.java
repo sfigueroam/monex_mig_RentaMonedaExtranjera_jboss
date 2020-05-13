@@ -23,6 +23,10 @@ import org.apache.xmlbeans.XmlCursor;
 import org.apache.xmlbeans.XmlError;
 import org.apache.xmlbeans.XmlOptions;
 
+import cl.teso.reca.pkgcutservicesmonex.ejb.PkgCutServicesMonexLocal;
+import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormInVO;
+import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormOutRecaMsgVO;
+import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormOutVO;
 import cl.tesoreria.AdfResult;
 import cl.tesoreria.FormRenta;
 import cl.tesoreria.FormularioR;
@@ -63,6 +67,7 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 	SessionContext sessionCtx;	
 	@EJB AdfprocedureLocal adflocal;
 	@EJB PkgSiiRentaMeLocal rentaMeEJB;	
+	@EJB PkgCutServicesMonexLocal pkgCutServicesMonexEJB;
 	FormularioResult formResult = new FormularioResult(); // MAN438: DHN
 															// (20150128)
 															// Instanciar
@@ -2008,8 +2013,101 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 
 		return resulta;
 	}
-
+	
 	private FormularioResult procesaFormularioRenta(FormRenta form) throws RentaMException, RentaMEGenericException {
+		
+		if (tareasME.esUnMovimientoGIRO21ME(form))
+			return procesaFormularioRentaNew( form);
+		else
+			return procesaFormularioRentaOld( form);
+			
+	}
+	String bigDecimalToString(BigDecimal bigDecimal)
+	{
+		if(bigDecimal == null)
+			return "";
+		else
+			return bigDecimal.toString();
+	}
+	
+	private FormularioResult procesaFormularioRentaNew(FormRenta form) throws RentaMException, RentaMEGenericException {
+		
+		try
+		{							
+			//PkgCutServicesMonexRemote pkgCutServicesMonexRemote= new PkgCutServicesMonexLocator().getPkgCutServicesMonex();						
+			TrxFormInVO trxFormInVO = new TrxFormInVO();
+			
+			BigDecimal formTipo = new BigDecimal(form.getFormulario());
+			String formVersion = tareasME.getFormVersion(formTipo.intValue());
+			trxFormInVO.setInFormTipo(formTipo);
+			trxFormInVO.setInFormVer(formVersion);
+			trxFormInVO.setInItems(getItemsAdf(form));
+			trxFormInVO.setInIdOrigen(form.getMessageId().getNumber());
+												
+			String loteCanal = CargarProperties.getValueProp("rentaMe.GIRO21ME.loteCanal");
+			String loteTipo = CargarProperties.getValueProp("rentaMe.GIRO21ME.loteTipo");
+			String rutIra = CargarProperties.getValueProp("rentaMe.GIRO21ME.rutIra");
+			String rutIraDv = CargarProperties.getValueProp("rentaMe.GIRO21ME.rutIraDv");
+			
+			trxFormInVO.setInLoteCanal(new BigDecimal(loteCanal));
+			trxFormInVO.setInLoteTipo(new BigDecimal(loteTipo));
+			trxFormInVO.setInRutIra(new BigDecimal(rutIra));
+			trxFormInVO.setInRutIraDv(rutIraDv);
+			
+			
+			
+			TrxFormOutVO trxFormOutVO = pkgCutServicesMonexEJB.trxForm(trxFormInVO);
+			
+			if (trxFormOutVO.getOutErrlvl().equals(new BigDecimal(5)))
+			{
+			formResult.setResultCode(0);
+			formResult.setContestadorID("procesaFormularioRenta");
+			formResult.setResultMessage("OK");
+			}
+			else
+			{
+				formResult.setResultCode(1);
+				formResult.setContestadorID("procesaFormularioRenta");
+				formResult.setResultMessage("Es un formulario RTRMASME, pero no hay registrado un RECMASME..");				
+				
+				Iterator<TrxFormOutRecaMsgVO> iterator = trxFormOutVO.getOutRecaMsg().iterator();
+				
+				Collection col = new ArrayList();
+				TrxFormOutRecaMsgVO trxFormOutRecaMsgVO;
+				while (iterator.hasNext()) {
+					trxFormOutRecaMsgVO = iterator.next();
+					AdfResult adf = new AdfResult();
+					adf.setDescription(trxFormOutRecaMsgVO.getGlosa());
+					adf.setFormIndex("0");
+					adf.setModule(bigDecimalToString(trxFormOutRecaMsgVO.getTipo()));
+					adf.setNumber(bigDecimalToString(trxFormOutRecaMsgVO.getErrorTgr()));
+					adf.setObjectDesc(trxFormOutRecaMsgVO.getObjdescrip().substring(1,100));
+					adf.setObjectName(trxFormOutRecaMsgVO.getObjname());
+					adf.setObjectValue(trxFormOutRecaMsgVO.getObjvalue());
+					adf.setSeverity(bigDecimalToString(trxFormOutRecaMsgVO.getSeveridad()));
+					col.add(adf);
+			    }
+				
+				AdfResult[] array = new AdfResult[col.size()];
+				formResult.setRecaMensajes((AdfResult[]) col.toArray(array));
+			}
+			guardaErroresToBD(form);	
+		}
+		catch (Exception e)
+		{							
+			e.printStackTrace();
+			logger.error("Error en el metodo pkgCutServicesMonexRemote.trxForm:" + e);
+			throw new RentaMException("ProcessRentaME",
+					"procesaFormularioRenta", e.getMessage(),
+					"Error en Inyeccion a pkgCutServicesMonex");
+		}
+		
+		logger.info("[******** RENTAMEEJB:  salida form salida" + formResult + " ********]");
+		return formResult;
+		
+	}
+
+	private FormularioResult procesaFormularioRentaOld(FormRenta form) throws RentaMException, RentaMEGenericException {
 		FormularioR formBD = null;
 		formBD = existeRegistradoFormularioMvto(form);
 		if (formBD.isIndExiste()) {
@@ -2235,6 +2333,44 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 		logger.info("[******** RENTAMEEJB:  salida form salida" + formResult + " ********]");
 		return formResult;
 
+	}
+	
+	private String getItemsAdf(FormRenta form)
+	{
+		String ECU_CS = new Character((char) 1).toString(); // Cell separator
+		String ECU_LS = new Character((char) 6).toString(); // Line separator
+		String ECU_RS = new Character((char) 5).toString(); // Rule separator
+		
+		String touples = "";
+		int indice = 0;
+				int largo = form.getItemsRenta().length;
+				boolean status;
+
+				while (indice < largo) {
+					ItemRenta items = (ItemRenta) form.getItemRenta(indice);
+					String codigo = items.getCodigo();
+					String valor = (items.getSigno().trim().equals("-") ? "-" : "")
+							+ items.getContenido().trim();
+
+					status = true;
+					while (indice + 1 < largo && status) {
+						ItemRenta itemsNext = (ItemRenta) form.getItemRenta(indice + 1);
+						if (codigo.equals(itemsNext.getCodigo())) {
+							valor += (itemsNext.getSigno().trim().equals("-") ? "-"
+									: "") + itemsNext.getContenido().trim();
+							indice++;
+						} else {
+							status = false;
+						}
+					}
+
+					touples = touples + codigo + ECU_CS;
+					touples = touples + valor + ECU_LS;
+					indice++;
+				}
+				
+		return touples + ECU_RS;
+		
 	}
 	
 	private boolean esIgualComoFormRECMAS(FormularioR formBD, FormRenta form) {
