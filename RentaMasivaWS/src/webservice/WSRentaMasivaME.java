@@ -21,9 +21,9 @@ public class WSRentaMasivaME
 		public @WebResult(name="receiverXMLResult",targetNamespace="http://www.openuri.org/") String receiverXML(@WebParam(name="inputXML")String inputXML)throws Exception
 	
     {   
-        logger.info("[******** WSME: Mensaje de entrada es: ["+inputXML+"] *******]");
+        logger.info("[********---- >>>WSME: Mensaje de entrada es: ["+inputXML+"] *******]");
         String myXmlOut = processME.receiverXML(inputXML);
-        logger.info("[******** WSME: Mensaje de Salida: \n"+myXmlOut+"\n ********]");
+        logger.info("[********---- >>>WSME: Mensaje de Salida: \n"+myXmlOut+"\n ********]");
         
         return myXmlOut;
         

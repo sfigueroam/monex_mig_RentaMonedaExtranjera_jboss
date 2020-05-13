@@ -2,28 +2,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>cl.gob.tgr.monex</groupId>
+
+	<parent>
+		<groupId>cl.gob.tgr.monex</groupId>
+		<artifactId>RentaMonedaExtranjeraApp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>rentamasivame.webservice</groupId>
 	<artifactId>RentaMasivaWS</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
-	
-	<repositories>
-		<repository>
-			<id>maven-group</id>
-			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-group/</url>
-		</repository>
-	</repositories>
-	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-snapshots/</url>
-		</snapshotRepository>
-		<repository>
-			<id>nexus-releases</id>
-			<url>http://nexus-cicd.apps.e4fe1952db36407ea60c.eastus2.azmosa.io/repository/maven-releases/</url>
-		</repository>
-	</distributionManagement>
 
 	<build>
 		<finalName>RentaMasivaWS</finalName>
@@ -60,9 +49,24 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
+			<groupId>cl.tesoreria.adf.adfprocedure</groupId>
+			<artifactId>AdfprocedureEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>cl.tesoreria.renta.me.pkgsiirentame</groupId>
+			<artifactId>PkgSiiRentaMeEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>cl.tesoreria.finanzas</groupId>
 			<artifactId>RentaMEJB</artifactId>
 			<version>1.0.0</version>
+			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

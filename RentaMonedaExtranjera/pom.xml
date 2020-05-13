@@ -2,92 +2,59 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>cl.gob.tgr.monex</groupId>
+	
+	<parent>
+		<groupId>cl.gob.tgr.monex</groupId>
+		<artifactId>RentaMonedaExtranjeraApp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<groupId>application</groupId>
 	<artifactId>RentaMonedaExtranjera</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0</version>	
 	<packaging>ear</packaging>
-
-	<repositories>
-		<repository>
-			<id>maven-group</id>
-			<url>http://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-releases</url>
-		</repository>
-	</repositories>
-  
-  	<distributionManagement>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>hhttp://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>nexus-releases</id>
-			<url>http://ec2-3-229-82-198.compute-1.amazonaws.com:8081/artifactory/tesoreria-releases</url>
-		</repository>
-	</distributionManagement>
 
 	<build>
 		<finalName>RentaMonedaExtranjera</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-ear-plugin</artifactId>
-				<version>3.0.1</version>
-				<configuration>
-					<earSourceDirectory>EarContent</earSourceDirectory>
-					<version>6</version>
-					<defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
-					<modules>
-						<ejbModule>
-							<groupId>cl.gob.tgr.monex</groupId>
-							<artifactId>AdfprocedureEJB</artifactId>
-							<bundleFileName>AdfprocedureEJB.jar</bundleFileName>
-						</ejbModule>
-						<ejbModule>
-							<groupId>cl.gob.tgr.monex</groupId>
-							<artifactId>PkgSiiRentaMeEJB</artifactId>
-							<bundleFileName>PkgSiiRentaMeEJB.jar</bundleFileName>
-						</ejbModule>
-						<webModule>
-							<groupId>cl.gob.tgr.monex</groupId>
-							<artifactId>RentaMasivaWS</artifactId>
-							<bundleFileName>RentaMasivaWS.war</bundleFileName>
-						</webModule>
-						<ejbModule>
-							<groupId>cl.gob.tgr.monex</groupId>
-							<artifactId>RentaMEJB</artifactId>
-							<bundleFileName>RentaMEJB.jar</bundleFileName>
-						</ejbModule>
-					</modules>
-					<displayName>RentaMonedaExtranjera</displayName>
-					<generateApplicationXml>true</generateApplicationXml>
-				</configuration>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>3.0.1</version>
+					<configuration>
+						<earSourceDirectory>EarContent</earSourceDirectory>
+						<version>6</version>
+						<defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+						<modules>
+							<webModule>
+								<groupId>rentamasivame.webservice</groupId>
+								<artifactId>RentaMasivaWS</artifactId>
+								<bundleFileName>RentaMasivaWS.war</bundleFileName>
+							</webModule>
+							<ejbModule>
+								<groupId>cl.tesoreria.adf.adfprocedure</groupId>
+								<artifactId>AdfprocedureEJB</artifactId>
+								<bundleFileName>AdfprocedureEJB.jar</bundleFileName>
+							</ejbModule>
+							<ejbModule>
+								<groupId>cl.tesoreria.renta.me.pkgsiirentame</groupId>
+								<artifactId>PkgSiiRentaMeEJB</artifactId>
+								<bundleFileName>PkgSiiRentaMeEJB.jar</bundleFileName>
+							</ejbModule>
+							<ejbModule>
+								<groupId>cl.tesoreria.finanzas</groupId>
+								<artifactId>RentaMEJB</artifactId>
+								<bundleFileName>RentaMEJB.jar</bundleFileName>
+							</ejbModule>					
+						</modules>
+						<displayName>RentaMonedaExtranjera</displayName>
+						<generateApplicationXml>true</generateApplicationXml>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>AdfprocedureEJB</artifactId>
-			<version>1.0.0</version>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>PkgSiiRentaMeEJB</artifactId>
-			<version>1.0.0</version>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>RentaMasivaWS</artifactId>
-			<version>1.0.0</version>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>RentaMEJB</artifactId>
-			<version>1.0.0</version>
-			<type>ejb</type>
-		</dependency>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
 			<artifactId>beehive-controls</artifactId>
@@ -102,6 +69,30 @@
 			<groupId>cl.gob.tgr.monex</groupId>
 			<artifactId>xbean-9.2.2.0</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cl.tesoreria.adf.adfprocedure</groupId>
+			<artifactId>AdfprocedureEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>cl.tesoreria.renta.me.pkgsiirentame</groupId>
+			<artifactId>PkgSiiRentaMeEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>cl.tesoreria.finanzas</groupId>
+			<artifactId>RentaMEJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+		</dependency>				
+		<dependency>
+			<groupId>rentamasivame.webservice</groupId>
+			<artifactId>RentaMasivaWS</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
 		</dependency>
 	</dependencies>
 </project>
