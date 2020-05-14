@@ -38,7 +38,7 @@ public class SpFindMsgmovByLlave2Caller extends ProcedureCaller
     {
         SpFindMsgmovByLlave2Result result = new SpFindMsgmovByLlave2Result();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_FIND_MSGMOV_BY_LLAVE2(?,?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_FIND_MSGMOV_BY_LLAVE2(?,?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, rutin);

@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 public class TrxFormDAO extends OracleDAOV2 { 
 
   public String callProcedure(){ 
-    return "{ call PKG_CUT_SERVICES_MONEX.TRX_FORM ( ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ? )  }"; 
+    return "{ call RECA.PKG_CUT_SERVICES_MONEX.TRX_FORM ( ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ?  , ? )  }"; 
   } 
 
   public Serializable fillStatement(CallableStatement cstmt,Connection conn) throws SQLException{ 

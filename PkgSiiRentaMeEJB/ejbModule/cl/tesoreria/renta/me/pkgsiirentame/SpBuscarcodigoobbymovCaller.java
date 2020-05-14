@@ -37,7 +37,7 @@ public class SpBuscarcodigoobbymovCaller extends ProcedureCaller
     {
         SpBuscarcodigoobbymovResult result = new SpBuscarcodigoobbymovResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_BUSCARCODIGOOBBYMOV(?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_BUSCARCODIGOOBBYMOV(?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, idmov);

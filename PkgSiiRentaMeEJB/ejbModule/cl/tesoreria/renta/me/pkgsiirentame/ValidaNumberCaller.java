@@ -40,7 +40,7 @@ public class ValidaNumberCaller extends ProcedureCaller
                                      BigDecimal formulario) throws java.sql.SQLException
     {
         BigDecimal retorno = null;
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.validaNumber(?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.validaNumber(?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, numberXML);

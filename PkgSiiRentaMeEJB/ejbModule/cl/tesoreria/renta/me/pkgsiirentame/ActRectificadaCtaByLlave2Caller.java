@@ -36,7 +36,7 @@ public class ActRectificadaCtaByLlave2Caller extends ProcedureCaller
     {
         ActRectificadaCtaByLlave2Result result = new ActRectificadaCtaByLlave2Result();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.ACT_RECTIFICADA_CTA_BY_LLAVE2(?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.ACT_RECTIFICADA_CTA_BY_LLAVE2(?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, rutin);

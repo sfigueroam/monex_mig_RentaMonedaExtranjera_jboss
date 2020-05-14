@@ -38,7 +38,7 @@ public class SpExisteCuentabyfolioandrutCaller extends ProcedureCaller
     {
         SpExisteCuentabyfolioandrutResult result = new SpExisteCuentabyfolioandrutResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_EXISTE_CUENTABYFOLIOANDRUT(?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_EXISTE_CUENTABYFOLIOANDRUT(?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, rut);

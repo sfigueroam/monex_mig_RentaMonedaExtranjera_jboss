@@ -37,7 +37,7 @@ public class SpExisteRegistradoFormmovtoCaller extends ProcedureCaller
     {
         SpExisteRegistradoFormmovtoResult result = new SpExisteRegistradoFormmovtoResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_EXISTE_REGISTRADO_FORMMOVTO(?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_EXISTE_REGISTRADO_FORMMOVTO(?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, numbertrx);

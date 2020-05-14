@@ -41,7 +41,7 @@ public class ProcessCaller extends ProcedureCaller
         try
         {
             ArrayList resultSets = new ArrayList();
-            CallableStatement call = conn.prepareCall("{call DISPATCH$PROCESS(?,?,?,?,?,?)}");
+            CallableStatement call = conn.prepareCall("{call ECUSQL.DISPATCH$PROCESS(?,?,?,?,?,?)}");
             try
             {
                 call.setString(1, touplestgf);

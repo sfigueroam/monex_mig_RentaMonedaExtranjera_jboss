@@ -32,7 +32,7 @@ public class RegistrarFomulariosCaller extends ProcedureCaller
     {
         RegistrarFomulariosResult result = new RegistrarFomulariosResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.REGISTRAR_FOMULARIOS(?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.REGISTRAR_FOMULARIOS(?,?)}");
         try
         {
             call.setObject(1, dbFormularios(formucoll, conn));

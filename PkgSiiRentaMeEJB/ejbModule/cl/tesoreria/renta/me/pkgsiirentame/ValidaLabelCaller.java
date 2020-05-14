@@ -35,7 +35,7 @@ public class ValidaLabelCaller extends ProcedureCaller
                                      String code) throws java.sql.SQLException
     {
         BigDecimal retorno = null;
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.validaLabel(?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.validaLabel(?,?)}");
         try
         {
             call.setString(1, code);

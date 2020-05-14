@@ -37,7 +37,7 @@ public class BuscarCutItemsCaller extends ProcedureCaller
         ArrayList resultSets = new ArrayList();
         if (conn.getMetaData().getURL().startsWith("jdbc:oracle:"))
         {
-            CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.buscar_cut_items(?,?)}");
+            CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.buscar_cut_items(?,?)}");
             try
             {
                 call.setBigDecimal(1, idMov);
@@ -52,7 +52,7 @@ public class BuscarCutItemsCaller extends ProcedureCaller
         }
         else
         {
-            CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.buscar_cut_items(?)}");
+            CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.buscar_cut_items(?)}");
             try
             {
                 call.setBigDecimal(1, idMov);

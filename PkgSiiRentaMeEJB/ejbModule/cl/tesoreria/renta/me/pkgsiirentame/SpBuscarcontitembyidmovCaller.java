@@ -33,7 +33,7 @@ public class SpBuscarcontitembyidmovCaller extends ProcedureCaller
     {
         SpBuscarcontitembyidmovResult result = new SpBuscarcontitembyidmovResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_BUSCARCONTITEMBYIDMOV(?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_BUSCARCONTITEMBYIDMOV(?,?)}");
         try
         {
             call.setBigDecimal(1, idmov);

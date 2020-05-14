@@ -31,7 +31,7 @@ public class MyprocedureCaller extends ProcedureCaller
     {
         MyprocedureResult result = new MyprocedureResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.MYPROCEDURE(?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.MYPROCEDURE(?)}");
         try
         {
             call.setBigDecimal(1, param1);

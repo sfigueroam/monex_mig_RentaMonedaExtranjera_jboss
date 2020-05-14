@@ -35,7 +35,7 @@ public class SpGenerarfolio01meCaller extends ProcedureCaller
     {
         SpGenerarfolio01meResult result = new SpGenerarfolio01meResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_GENERARFOLIO01ME(?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_GENERARFOLIO01ME(?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, formulario);

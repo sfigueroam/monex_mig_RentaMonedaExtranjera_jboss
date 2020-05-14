@@ -32,7 +32,7 @@ public class InsertItemsByCollCaller extends ProcedureCaller
     {
         InsertItemsByCollResult result = new InsertItemsByCollResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.INSERT_ITEMS_BY_COLL(?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.INSERT_ITEMS_BY_COLL(?,?)}");
         try
         {
             call.setObject(1, dbItemsCut(itmCol, conn));

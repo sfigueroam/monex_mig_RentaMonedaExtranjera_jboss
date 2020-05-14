@@ -45,7 +45,7 @@ public class SpRegistraCuentaCutCaller extends ProcedureCaller
     {
         SpRegistraCuentaCutResult result = new SpRegistraCuentaCutResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_REGISTRA_CUENTA_CUT(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_REGISTRA_CUENTA_CUT(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, rut);

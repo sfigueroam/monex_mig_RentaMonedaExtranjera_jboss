@@ -42,7 +42,7 @@ public class SpExisteMovByLlaveCaller extends ProcedureCaller
     {
         SpExisteMovByLlaveResult result = new SpExisteMovByLlaveResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_EXISTE_MOV_BY_LLAVE(?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_EXISTE_MOV_BY_LLAVE(?,?,?,?,?,?,?,?,?,?)}");
         try
         {
             call.setBigDecimal(1, rutin);

@@ -44,7 +44,7 @@ public class SpInsertMsgRentaMeCaller extends ProcedureCaller
     {
         SpInsertMsgRentaMeResult result = new SpInsertMsgRentaMeResult();
         ArrayList resultSets = new ArrayList();
-        CallableStatement call = conn.prepareCall("{call PKG_SII_RENTA_ME.SP_INSERT_MSG_RENTA_ME(?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement call = conn.prepareCall("{call SII.PKG_SII_RENTA_ME.SP_INSERT_MSG_RENTA_ME(?,?,?,?,?,?,?,?,?,?,?,?)}");
         try
         {
             call.setString(1, messageid);
