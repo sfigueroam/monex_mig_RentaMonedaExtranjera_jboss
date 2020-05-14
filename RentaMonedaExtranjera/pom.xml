@@ -63,6 +63,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>cl.gob.tgr.monex</groupId>
+			<artifactId>log4j-1.2.17</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cl.gob.tgr.monex</groupId>
 			<artifactId>beehive-controls</artifactId>
 			<version>1.0.0</version>
 		</dependency>
@@ -76,6 +81,16 @@
 			<artifactId>xbean-9.2.2.0</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+ 		 <dependency>
+  			<groupId>cl.gob.tgr.monex</groupId>
+			<artifactId>xmlbeans-3.0.0</artifactId>
+  			<version>1.0.0</version>
+		</dependency>
+ 		<dependency>
+			<groupId>cl.gob.tgr.monex</groupId>
+  			<artifactId>RentaSchemaTypeSystem</artifactId>
+  			<version>1.0.0</version>
+  		</dependency>
 		<dependency>
 			<groupId>cl.tesoreria.adf.adfprocedure</groupId>
 			<artifactId>AdfprocedureEJB</artifactId>

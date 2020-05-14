@@ -73,7 +73,7 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>cl.tesoreria</groupId>
+			<groupId>cl.tesoreria.monex</groupId>
 			<artifactId>MessagesVO</artifactId>
 			<version>1.0.0</version>
 		</dependency>

@@ -211,6 +211,8 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 		String mensajesErrores = "";
 		String respuesta = "";
 		try {
+			//private MessageDocument myMessageIn;
+			
 			myMessageIn = MessageDocument.Factory.parse(MensajeIN);
 			// Create an XmlOptions instance and set the error listener.
 			XmlOptions validateOptions = new XmlOptions();

@@ -988,6 +988,8 @@ public interface MessageDocument extends org.apache.xmlbeans.XmlObject
         
         /** @param xmlAsString the string value to parse */
         public static noNamespace.MessageDocument parse(java.lang.String xmlAsString) throws org.apache.xmlbeans.XmlException {
+        	
+        	//org.apache.xmlbeans.XmlObject
           return (noNamespace.MessageDocument) org.apache.xmlbeans.XmlBeans.getContextTypeLoader().parse( xmlAsString, type, null ); }
         
         public static noNamespace.MessageDocument parse(java.lang.String xmlAsString, org.apache.xmlbeans.XmlOptions options) throws org.apache.xmlbeans.XmlException {
