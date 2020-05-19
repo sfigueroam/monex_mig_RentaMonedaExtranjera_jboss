@@ -14,13 +14,14 @@ import cl.tesoreria.finanzas.ProcessRentaMELocal;
 public class WSRentaMasivaME 
 {     
     @EJB ProcessRentaMELocal processME;    
-    private static Logger logger = Logger.getLogger("cl.tesoreria.finpub.RentaMonedaExtranjera.WSRentaMasivaME");
+    private static Logger logger = Logger.getLogger("webservice.WSRentaMasivaME");
     static final long serialVersionUID = 1L;
     
     @WebMethod(action="receiverXML")
 		public @WebResult(name="receiverXMLResult",targetNamespace="http://www.openuri.org/") String receiverXML(@WebParam(name="inputXML")String inputXML)throws Exception
 	
     {   
+    	logger.info("-------->>>>>>>>Iniciando DEBUG...<-------------------------------------");
         logger.info("[********---- >>>WSME: Mensaje de entrada es: ["+inputXML+"] *******]");
         String myXmlOut = processME.receiverXML(inputXML);
         logger.info("[********---- >>>WSME: Mensaje de Salida: \n"+myXmlOut+"\n ********]");

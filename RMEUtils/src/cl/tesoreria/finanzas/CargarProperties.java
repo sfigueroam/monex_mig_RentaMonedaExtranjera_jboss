@@ -15,11 +15,11 @@ import org.apache.log4j.Logger;
 public class CargarProperties {
 	private static Properties rentaProps =null;;
 	private static FileInputStream in = null;
-	private static Logger logger = Logger.getLogger("cl.tesoreria.finpub.RentaMonedaExtranjera.CargarProperties"); 
+	private static Logger logger = Logger.getLogger("cl.tesoreria.finanzas.CargarProperties"); 
 	
 	static{
 		try {
-			in = new FileInputStream("RentaMonedaExtranjera.properties");		
+			in = new FileInputStream("/Users/sbecker/ARQUITECTURA/Proyecto Contenedores/Fuentes Monex/mig_RentaMonedaExtranjera/RentaMasivaWS/WebContent/WEB-INF/lib/RentaMonedaExtranjera.properties");		
 			rentaProps=new Properties();
 			rentaProps.load(in);
             in.close();
