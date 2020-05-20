@@ -11,6 +11,7 @@
 
 package cl.tesoreria.renta.me.pkgsiirentame;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.Clob;
 import java.sql.Connection;
@@ -23,6 +24,8 @@ import javax.sql.RowSet;
 import org.apache.log4j.Logger;
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.CachedRowSetImpl;
+
+import oracle.jdbc.OracleConnection;
 //import weblogic.jdbc.rowset.RowSetFactory;
 //import weblogic.jdbc.rowset.WLCachedRowSet;
 
@@ -249,7 +252,7 @@ public abstract class ProcedureCaller
 
         // Create an SQL Array from array of objects
         oracle.sql.ArrayDescriptor descriptor =
-            oracle.sql.ArrayDescriptor.createDescriptor("ITEMS_CUT", conn);
+            oracle.sql.ArrayDescriptor.createDescriptor("SII.ITEMS_CUT", conn);
         return new oracle.sql.ARRAY(descriptor, conn, objects);
     }
 
@@ -354,8 +357,18 @@ public abstract class ProcedureCaller
         attributes[4] = truncate(item.getValor(), 4000);
 
         // Create an SQL Struct from array of attributes
+        
+      //  try {
+	//		OracleConnection oracleConnection = (OracleConnection) 
+	//			    conn.getClass().getMethod("getUnderlyingConnection").invoke(conn);
+//		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+//				| SecurityException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		};
+        
         oracle.sql.StructDescriptor descriptor =
-            oracle.sql.StructDescriptor.createDescriptor("ITEM_CUT", conn);
+            oracle.sql.StructDescriptor.createDescriptor("SII.ITEMS_CUT", conn);
         return new oracle.sql.STRUCT(descriptor, conn, attributes);
     }
 

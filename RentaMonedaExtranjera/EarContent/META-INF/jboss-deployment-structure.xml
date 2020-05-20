@@ -3,6 +3,12 @@
     <deployment>
          <dependencies>
               <module name="cl.tgr.librerias" export="true" />
-        </dependencies>
-    </deployment>
+              <module name="com.oracle" export="true" />
+        </dependencies> 
+
+	    <resources>
+	        <resource-root path="ojdbc6.jar"/>
+	    </resources>
+
+   </deployment>
 </jboss-deployment-structure>

@@ -1,5 +1,7 @@
 package cl.tesoreria.renta.me.pkgsiirentame; 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,6 +14,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+
+import oracle.jdbc.OracleConnection;
 
 @Stateless(name = "PkgSiiRentaMe", mappedName = "cl.tesoreria.renta.me.pkgsiirentame.PkgSiiRentaMe")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -39,6 +43,22 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 			throw new PkgSiiRentaMeException(ex);
 		}
 	}
+	
+	
+	public static OracleConnection getOracleConnection(Connection conFromPool)
+			throws SQLException, Exception {
+			 
+			  try {
+			    Class[] parms = null;
+			    Method method =
+			      (conFromPool.getClass()).getMethod("getUnderlyingConnection",
+			                                       parms);
+			    return (OracleConnection) method.invoke(conFromPool, parms);
+			 
+			  } catch (InvocationTargetException ite) {
+			    throw new SQLException(ite.getMessage());
+			  }
+			}
 
 	@Override
 	public ActRectificadaCtaByLlave2Result actRectificadaCtaByLlave2(
@@ -66,13 +86,19 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 
 	{
 		try {
-			Connection conn = dataSource.getConnection();
-			try {
-				return InsertItemsByCollCaller.execute(conn, itmCol);
-			} finally {
-				conn.close();
-			}
-		} catch (SQLException ex) {
+			
+				//Connection conn = dataSource.getConnection();
+
+				OracleConnection conn = getOracleConnection( dataSource.getConnection() );
+				    
+				try {
+					return InsertItemsByCollCaller.execute(conn, itmCol);
+				} finally {
+					conn.close();
+			
+				}
+			  
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error("Error en el metodo PkgSiiRentaMe.insertItemsByColl() : " + ex);
 			throw new PkgSiiRentaMeException(ex);
