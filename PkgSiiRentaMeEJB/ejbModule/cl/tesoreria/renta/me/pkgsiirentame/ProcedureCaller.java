@@ -368,7 +368,7 @@ public abstract class ProcedureCaller
 //		};
         
         oracle.sql.StructDescriptor descriptor =
-            oracle.sql.StructDescriptor.createDescriptor("SII.ITEMS_CUT", conn);
+            oracle.sql.StructDescriptor.createDescriptor("SII.ITEM_CUT", conn);
         return new oracle.sql.STRUCT(descriptor, conn, attributes);
     }
 

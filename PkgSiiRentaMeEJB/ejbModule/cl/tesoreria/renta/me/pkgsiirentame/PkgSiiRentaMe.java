@@ -44,21 +44,6 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 		}
 	}
 	
-	
-	public static OracleConnection getOracleConnection(Connection conFromPool)
-			throws SQLException, Exception {
-			 
-			  try {
-			    Class[] parms = null;
-			    Method method =
-			      (conFromPool.getClass()).getMethod("getUnderlyingConnection",
-			                                       parms);
-			    return (OracleConnection) method.invoke(conFromPool, parms);
-			 
-			  } catch (InvocationTargetException ite) {
-			    throw new SQLException(ite.getMessage());
-			  }
-			}
 
 	@Override
 	public ActRectificadaCtaByLlave2Result actRectificadaCtaByLlave2(
@@ -79,6 +64,19 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 			throw new PkgSiiRentaMeException(ex);
 		}
 	}
+
+	public static OracleConnection getOracleConnection(Connection conFromPool)
+			throws SQLException, Exception {
+			 
+		  try {
+		    Class[] parms = null;
+		    Method method = (conFromPool.getClass()).getMethod("getUnderlyingConnection", parms);
+		    return (OracleConnection) method.invoke(conFromPool, parms);
+		 
+		  } catch (InvocationTargetException ite) {
+		    throw new SQLException(ite.getMessage());
+		  }
+	}	
 	
 	@Override
 	public InsertItemsByCollResult insertItemsByColl(ItemCut[] itmCol)
@@ -87,15 +85,14 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 	{
 		try {
 			
-				//Connection conn = dataSource.getConnection();
+				Connection conn = dataSource.getConnection();
 
-				OracleConnection conn = getOracleConnection( dataSource.getConnection() );
+				OracleConnection con = getOracleConnection( conn );
 				    
 				try {
-					return InsertItemsByCollCaller.execute(conn, itmCol);
+					return InsertItemsByCollCaller.execute(con, itmCol);
 				} finally {
 					conn.close();
-			
 				}
 			  
 		} catch (Exception ex) {
@@ -425,14 +422,16 @@ public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 			BigDecimal fecha9927) throws PkgSiiRentaMeException {
 		try {
 			Connection conn = dataSource.getConnection();
+
+			OracleConnection con = getOracleConnection( conn );
 			try {
-				return SpInsertMsgRentaMeCaller.execute(conn, messageid, code,
+				return SpInsertMsgRentaMeCaller.execute(con, messageid, code,
 						fechain, identif, rutcontr, formulario, foliodecl,
 						periodocont, status, xml, fecha9927);
 			} finally {
 				conn.close();
 			}
-		} catch (SQLException ex) {	
+		} catch ( Exception ex ) {	
 			ex.printStackTrace();
 			logger.error("Error en el metodo PkgSiiRentaMe.spInsertMsgRentaMe() : " + ex);
 			throw new PkgSiiRentaMeException(ex);
