@@ -91,11 +91,11 @@
   			<artifactId>RentaSchemaTypeSystem</artifactId>
   			<version>1.0.0</version>
   		</dependency>
- 		<!-- <dependency>
+		<dependency>  		
 			<groupId>cl.gob.tgr.monex</groupId>
-			<artifactId>ojdbc6</artifactId>
+			<artifactId>lib-tesoreria16-2.1</artifactId>
 			<version>1.0.0</version>
-		</dependency> -->
+		</dependency>   		
 		<dependency>
 			<groupId>cl.tesoreria.adf.adfprocedure</groupId>
 			<artifactId>AdfprocedureEJB</artifactId>
