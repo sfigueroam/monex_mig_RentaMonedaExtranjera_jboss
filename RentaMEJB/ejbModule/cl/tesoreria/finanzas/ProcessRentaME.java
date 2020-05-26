@@ -23,10 +23,10 @@ import org.apache.xmlbeans.XmlCursor;
 import org.apache.xmlbeans.XmlError;
 import org.apache.xmlbeans.XmlOptions;
 
-import cl.teso.reca.pkgcutservicesmonex.ejb.PkgCutServicesMonexLocal;
-import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormInVO;
-import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormOutRecaMsgVO;
-import cl.teso.reca.pkgcutservicesmonex.vo.TrxFormOutVO;
+import cl.tesoreria.reca.pkgcutservicesmonex.ejb.PkgCutServicesMonexLocal;
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.TrxFormInVO;
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.TrxFormOutRecaMsgVO;
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.TrxFormOutVO;
 import cl.tesoreria.AdfResult;
 import cl.tesoreria.FormRenta;
 import cl.tesoreria.FormularioR;

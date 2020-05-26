@@ -1,7 +1,7 @@
-package cl.teso.reca.pkgcutservicesmonex.ejb; 
+package cl.tesoreria.reca.pkgcutservicesmonex.ejb; 
 
 import javax.ejb.Local; 
-import cl.teso.reca.pkgcutservicesmonex.vo.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.*; 
 
 @Local 
 public interface PkgCutServicesMonexLocal  { 

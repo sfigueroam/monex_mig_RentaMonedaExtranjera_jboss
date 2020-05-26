@@ -1,10 +1,10 @@
-package cl.teso.reca.pkgcutservicesmonex.dao; 
+package cl.tesoreria.reca.pkgcutservicesmonex.dao; 
 import java.sql.CallableStatement; 
 import java.sql.SQLException;
 import java.sql.Connection; 
 import java.io.Serializable; 
 import cl.tesoreria.utiles.dao.OracleDAOV2; 
-import cl.teso.reca.pkgcutservicesmonex.vo.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.*; 
 import cl.tesoreria.utiles.format.FormatosFechasNew; 
 import java.sql.Types; 
 import cl.tesoreria.utiles.sql.TypesExt; 

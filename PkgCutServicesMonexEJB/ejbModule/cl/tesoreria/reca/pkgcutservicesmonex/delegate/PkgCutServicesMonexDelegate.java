@@ -1,6 +1,6 @@
-package cl.teso.reca.pkgcutservicesmonex.delegate; 
-import cl.teso.reca.pkgcutservicesmonex.locator.PkgCutServicesMonexLocator; 
-import cl.teso.reca.pkgcutservicesmonex.vo.*; 
+package cl.tesoreria.reca.pkgcutservicesmonex.delegate; 
+import cl.tesoreria.reca.pkgcutservicesmonex.locator.PkgCutServicesMonexLocator; 
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.*; 
 
 public class PkgCutServicesMonexDelegate { 
 

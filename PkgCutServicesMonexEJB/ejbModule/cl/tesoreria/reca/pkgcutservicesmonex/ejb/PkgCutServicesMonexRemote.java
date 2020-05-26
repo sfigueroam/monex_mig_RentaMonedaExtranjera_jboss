@@ -1,7 +1,7 @@
-package cl.teso.reca.pkgcutservicesmonex.ejb; 
+package cl.tesoreria.reca.pkgcutservicesmonex.ejb; 
 
 import javax.ejb.Remote; 
-import cl.teso.reca.pkgcutservicesmonex.vo.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.*; 
 
 @Remote 
 public interface PkgCutServicesMonexRemote  { 

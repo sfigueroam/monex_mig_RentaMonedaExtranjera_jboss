@@ -1,8 +1,8 @@
-package cl.teso.reca.pkgcutservicesmonex.locator; 
+package cl.tesoreria.reca.pkgcutservicesmonex.locator; 
 
 import javax.naming.Context; 
 import javax.naming.InitialContext; 
-import cl.teso.reca.pkgcutservicesmonex.ejb.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.ejb.*; 
 
 public class PkgCutServicesMonexLocator { 
 

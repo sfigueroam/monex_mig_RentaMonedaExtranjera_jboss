@@ -1,12 +1,12 @@
-package cl.teso.reca.pkgcutservicesmonex.ejb; 
+package cl.tesoreria.reca.pkgcutservicesmonex.ejb; 
 import javax.ejb.Stateless; 
 import javax.ejb.TransactionAttribute; 
 import javax.ejb.TransactionAttributeType; 
 import javax.annotation.Resource; 
 import javax.sql.DataSource; 
 import java.io.Serializable; 
-import cl.teso.reca.pkgcutservicesmonex.dao.*; 
-import cl.teso.reca.pkgcutservicesmonex.vo.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.dao.*; 
+import cl.tesoreria.reca.pkgcutservicesmonex.vo.*; 
 
 /** 
 * Session Bean implementation class PkgCutServicesMonex 

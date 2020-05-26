@@ -1,4 +1,4 @@
-package cl.teso.reca.pkgcutservicesmonex.vo; 
+package cl.tesoreria.reca.pkgcutservicesmonex.vo; 
 import java.io.Serializable; 
 import java.math.BigDecimal; 
 
