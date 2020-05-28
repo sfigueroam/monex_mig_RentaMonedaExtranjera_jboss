@@ -37,7 +37,7 @@ import cl.tesoreria.MessageID;
 import cl.tesoreria.adf.adfprocedure.AdfprocedureException;
 import cl.tesoreria.adf.adfprocedure.AdfprocedureLocal;
 import cl.tesoreria.adf.adfprocedure.ProcessResult;
-import cl.tesoreria.finanzas.properties.CargarArchivo;
+//import cl.tesoreria.finanzas.properties.CargarArchivo;
 import cl.tesoreria.finanzas.tareas.TareasME;
 import cl.tesoreria.renta.me.pkgsiirentame.ActRectificadaCtaByLlave2Result;
 import cl.tesoreria.renta.me.pkgsiirentame.ActRectificadaCtaByLlaveResult;
@@ -3350,8 +3350,13 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 						&& vigencia8707.trim().length() > 0) {
 					try {
 						BigDecimal c8707 = new BigDecimal(vigencia8707);
-						CargarArchivo.cargarVigencia(c8707.toString());
-						form_vig = CargarArchivo.VIGENCIA_F50;
+						
+						form_vig = CargarProperties.getValueProp( "vigencia.50.8707." + c8707);
+						
+						//CargarArchivo.cargarVigencia(c8707.toString());
+						
+						//form_vig = CargarArchivo.VIGENCIA_F50;
+						
 						logger.info("form_vig=" + form_vig);
 					} catch (Exception e8707) {
 						e8707.printStackTrace();

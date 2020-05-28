@@ -21,7 +21,6 @@ public class CargarProperties {
 		try {
 
 			in = CargarProperties.class.getClassLoader().getResourceAsStream("RentaMonedaExtranjera.properties");
-			//in = new FileInputStream("/Users/sbecker/ARQUITECTURA/Proyecto Contenedores/Fuentes Monex/mig_RentaMonedaExtranjera/RentaMasivaWS/WebContent/WEB-INF/lib/RentaMonedaExtranjera.properties");		
 			rentaProps=new Properties();
 			rentaProps.load(in);
             in.close();
