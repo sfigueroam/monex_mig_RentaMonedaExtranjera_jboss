@@ -24,14 +24,13 @@ public class CargarProperties {
 			rentaProps=new Properties();
 			rentaProps.load(in);
             in.close();
+            logger.info("------>>>>> Carga de propiedades Exitosa : ");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			logger.error("Error en el metodo CargarProperties()1 : " + e);
-			e.printStackTrace();
+			logger.info("Error en el metodo CargarProperties()1 : " + e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			logger.error("Error en el metodo CargarProperties()2 : " + e);			            
+			logger.info("Error en el metodo CargarProperties()2 : " + e);			            
 		}
 				
 	}
