@@ -87,42 +87,29 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 		boolean parser = false;
 		String myXmlOut = "ok";
 		try {
-			logger.info("[******** EJBME: Seguimiento : [1] *******]");
 			parser = parserMessage(inputXML);
 			if (parser) {
 				// TODO: se parsea la entrada en un objeto FormRenta
 				FormRenta[] arrayFormRenta = buildFormulariosRenta(inputXML);
 				FormRenta formulario = null;
-				logger.info("[******** EJBME: Seguimiento : [2] *******]");
 				if (arrayFormRenta != null && arrayFormRenta.length > 1) {
-					logger.info("[******** EJBME: Seguimiento : [3] *******]");
 					try {
-						logger.info("[******** EJBME: Seguimiento : [4] *******]");
 						result = (FormularioResult) this
 								.processDataRenta(arrayFormRenta);
 					} catch (Exception ex) {
 						logger.error(ex);
 						throw new RentaMEGenericException(ex);
 					}
-					logger.info("[******** EJBME: Seguimiento : [5] *******]");
 					myXmlOut = Utils.buildMessageResponse(result,
 							arrayFormRenta);
 				} else {
-					logger.info("[******** EJBME: Seguimiento : [6] *******]");
 					formulario = arrayFormRenta[0];
-					logger.info("[******** EJBME: Seguimiento : [6.1] *******]");
 					String codeXML = formulario.getMessageId().getCode();
-					logger.info("[******** EJBME: Seguimiento : [6.2] *******]");
-					logger.info("[******** EJBME: Seguimiento : [codeXML: " + codeXML + "] *******]");
 					if (codeXML != null && codeXML.length() > 0
 							&& this.validaLabel(codeXML)) {
-						logger.info("[******** EJBME: Seguimiento : [6.3] *******]");
 						result = (FormularioResult) this
 								.processDataRenta(formulario);
-						logger.info("[******** EJBME: Seguimiento : [6.4] *******]");
-						logger.info("[******** EJBME: Seguimiento : [result: " + result + "] *******]");
 					} else {
-						logger.info("[******** EJBME: Seguimiento : [7] *******]");
 						// TODO: mensaje de Salida
 						result = new FormularioResult();
 						result.setResultCode(1);
@@ -134,17 +121,12 @@ public class ProcessRentaME implements ProcessRentaMERemote,ProcessRentaMELocal 
 						mensaje.setObjectValue(codeXML);
 						Collection mensajes = new ArrayList();
 						mensajes.add(mensaje);
-
 						AdfResult[] mensajesADF = new AdfResult[mensajes.size()];
 						result.setRecaMensajes((AdfResult[]) mensajes.toArray(mensajesADF));
 					}
-					logger.info("[******** EJBME: Seguimiento : [7.1] *******]");
 					myXmlOut = Utils.buildMessageResponse(result, myMessageIn);
-					logger.info("[******** EJBME: Seguimiento : [7.2] *******]");
-					logger.info("[******** EJBME: Seguimiento : [myXmlOut: " + myXmlOut + "] *******]");
 				}
 			} else {
-				logger.info("[******** EJBME: Seguimiento : [1] *******]");
 				// TODO: mensaje de Salida
 				result = new FormularioResult();
 				result.setResultCode(1);
