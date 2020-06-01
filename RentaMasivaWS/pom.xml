@@ -4,14 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>cl.gob.tgr.monex</groupId>
+		<groupId>cl.tesoreria.finanzas.rentame</groupId>
 		<artifactId>RentaMonedaExtranjeraApp</artifactId>
-		<version>1.0.0</version>
+		<version>2.0.0.0</version>
 	</parent>
 
 	<groupId>rentamasivame.webservice</groupId>
 	<artifactId>RentaMasivaWS</artifactId>
-	<version>1.0.0</version>
 	<packaging>war</packaging>
 
 	<build>
@@ -51,28 +50,28 @@
 		<dependency>
 			<groupId>cl.tesoreria.adf.adfprocedure</groupId>
 			<artifactId>AdfprocedureEJB</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.tesoreria.renta.me.pkgsiirentame</groupId>
 			<artifactId>PkgSiiRentaMeEJB</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.tesoreria.finanzas</groupId>
 			<artifactId>RentaMEJB</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cl.tesoreria.finanzas</groupId>
 			<artifactId>RMEUtils</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
