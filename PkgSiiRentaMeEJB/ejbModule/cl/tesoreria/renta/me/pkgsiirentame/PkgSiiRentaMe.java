@@ -16,15 +16,34 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 import oracle.jdbc.OracleConnection;
+import cl.tesoreria.finanzas.CargarProperties;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 
 @Stateless(name = "PkgSiiRentaMe", mappedName = "cl.tesoreria.renta.me.pkgsiirentame.PkgSiiRentaMe")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class PkgSiiRentaMe implements PkgSiiRentaMeRemote, PkgSiiRentaMeLocal {
 
-	@Resource(lookup = "java:/jdbc/siiDS")
-	private DataSource dataSource;
+	// @Resource(lookup = "java:/jdbc/siiDS")
+	// private DataSource dataSource;
+	private DataSource dataSource = cargaDataSource();
 	private static Logger logger = Logger.getLogger("cl.tesoreria.finpub.RentaMonedaExtranjera.PkgSiiRentaMe");
-	
+
+	private static DataSource cargaDataSource() {
+		try {
+			Context ctx = new InitialContext();
+			String jndiDatasourceSii = CargarProperties.getValueProp("JNDI.DATASOURCE.SII");
+			DataSource dataSource = (DataSource)ctx.lookup(jndiDatasourceSii);
+			//DataSource dataSource = (DataSource)ctx.lookup(CargarProperties.getValueProp("rentaMe.JNDI.DATASOURCE.SII"));
+			logger.info("Seguimiento ------ CARGA Constantes.JNDI.DATASOURCE.SII=" + CargarProperties.getValueProp("JNDI.DATASOURCE.SII"));
+			return dataSource;
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			logger.error("Error en el metodo PkgCMonEx.cargaDataSource() : " + ex);
+		}
+		return null;
+	}
+
 	@Override
 	public ActRectificadaCtaByLlaveResult actRectificadaCtaByLlave(
 			BigDecimal rutin, String dvin, BigDecimal formtipoin,
