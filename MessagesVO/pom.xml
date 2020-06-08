@@ -2,14 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   
   	<parent>
-		<groupId>cl.gob.tgr.monex</groupId>
+		<groupId>cl.tesoreria.finanzas.rentame</groupId>
 		<artifactId>RentaMonedaExtranjeraApp</artifactId>
-		<version>1.0.0</version>
+		<version>2.0.0.0</version>
 	</parent>
   
-  <groupId>cl.tesoreria.monex</groupId>
+  <groupId>cl.tesoreria.messagesvo</groupId>
   <artifactId>MessagesVO</artifactId>
-  <version>1.0.0</version>
   
   <build>
   <finalName>MessagesVO</finalName>
