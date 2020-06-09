@@ -2,15 +2,15 @@ apiVersion: v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
 kind: Service
 
 metadata:
-  name: registro-eventos-app-service
+  name: monex-renta-moneda-extranjera-app-service
   labels:
-     app: registro-eventos-app
+     app: monex-renta-moneda-extranjera-app
 spec:
   selector:
-     app: registro-eventos-app
+     app: monex-renta-moneda-extranjera-app
   ports:
-     - name: registro-eventos-appp
+     - name: monex-renta-moneda-extranjera-appp
        protocol: TCP
-       port: 8088
-       targetPort: 8088
+       port: 8080
+       targetPort: 8080
   type: LoadBalancer
