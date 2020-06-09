@@ -22,7 +22,7 @@
 					<version>3.0.1</version>
 					<configuration>
 						<earSourceDirectory>EarContent</earSourceDirectory>
-						<version>6</version>
+						<!--<version>6</version>-->
 						<defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
 						<modules>
 							<webModule>
@@ -52,6 +52,7 @@
 							</ejbModule>
 						</modules>
 						<displayName>RentaMonedaExtranjera</displayName>
+                    	<finalName>RentaMonedaExtranjera-${project.version}</finalName>
 						<generateApplicationXml>true</generateApplicationXml>
 					</configuration>
 				</plugin>

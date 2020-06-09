@@ -1,0 +1,16 @@
+apiVersion: v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
+kind: Service
+
+metadata:
+  name: registro-eventos-app-service
+  labels:
+     app: registro-eventos-app
+spec:
+  selector:
+     app: registro-eventos-app
+  ports:
+     - name: registro-eventos-appp
+       protocol: TCP
+       port: 8088
+       targetPort: 8088
+  type: LoadBalancer

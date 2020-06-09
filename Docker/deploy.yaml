@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
+kind: Deployment
+metadata:
+  name: registro-eventos-deployment
+spec:
+  selector:
+    matchLabels:
+      app: registro-eventos-app
+  replicas: 2 # indica al controlador que ejecute 2 pods
+  template:
+    metadata:
+      labels:
+        app: registro-eventos-app
+    spec:
+      containers:
+      - name: registro-eventos-app
+        image: 604753321405.dkr.ecr.us-east-1.amazonaws.com/registro-eventos:1.2.0.0
+        ports:
+        - containerPort: 8088
+          name: api
+      imagePullSecrets:
+        - name: aws-registro-eventos-registry
